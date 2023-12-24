@@ -6,7 +6,6 @@ const nextButton = document.getElementById('music-next');
 const playerPlay = document.getElementById('music-play');
 const sidePlay =document.querySelectorAll('.side-playlist li i');
 
-
 const songList1 = [
     {
         song: 'Wake up!',
@@ -56,49 +55,49 @@ const songList2 = [
         song: 'We Higher',
         singer: 'GrrovyRoom',
         img: 'musics/We Higher.jpg',
-        music: 'songs/Wake up!.m4a'
+        music: 'songs/We Higher.m4a'
     },
     {
-        song: 'Heat',
-        singer: 'lilBOI, MIRANEE',
-        img: 'musics/Heat.jpg',
-        music: 'songs/Just Give Me A Reason.m4a'
+        song: '5 Gawd',
+        singer: 'SUPERBEE',
+        img: 'musics/5 Gawd.jpg',
+        music: 'songs/5 Gawd.m4a'
     },
     {
         song: 'Friends',
         singer: 'Wonstein, lilBOI',
         img: 'musics/Friends.jpg',
-        music: 'songs/Since You Kissed Me.m4a'
+        music: 'songs/Friends.m4a'
     },
     {
-        song: 'Refreash',
-        singer: 'TakeOne, lilBOI',
-        img: 'musics/Refreash.jpg',
-        music: 'songs/Cheapest Flight.m4a'
+        song: 'VVS',
+        singer: 'MIRANEE, Justhis',
+        img: 'musics/vvs.jpg',
+        music: 'songs/VVS.m4a'
     },
     {
         song: 'Tommorow',
         singer: 'lilBOI, Giriboy',
         img: 'musics/Tommorow.jpg',
-        music: 'songs/Home.m4a'
+        music: 'songs/Tomorrow.m4a'
     },
     {
         song: 'ART GANG MONEY',
         singer: 'Swervy',
         img: 'musics/ART GANG MONEY.jpg',
-        music: 'songs/Dont Look Back In Anger.m4a'
+        music: 'songs/ART GANG MONEY.m4a'
     },
     {
         song: 'No Thanxxxx',
         singer: 'MINO, Simon Dommic, Thq Quiett',
         img: 'musics/No Thx.jpg',
-        music: 'songs/Liquid Lunch.m4a'
+        music: 'songs/No Thanxxx.m4a'
     },
     {
-        song: 'Liqch',
-        singer: 'Caro Emerald',
-        img: 'musics/Liquid Lunch.jpg',
-        music: 'songs/Liquid Lunch.m4a'
+        song: 'BE !',
+        singer: 'sokodomo',
+        img: 'musics/be.jpg',
+        music: 'songs/BE.m4a'
     },
 ]
 
@@ -110,9 +109,16 @@ const collectionList = document.querySelectorAll('.side-collection-background');
 const collectionListSpan = document.querySelectorAll('.side-collection-background span');
 const singerList = document.querySelectorAll('.recommand-singerlist li');
 const seideCollectionicon = document.querySelectorAll('.side-collection-content li i');
+const player = document.querySelector('.player');
+const playerText = document.querySelector('.player-text');
+const durationSpan = document.getElementById('duration');
+const playerProgessbar = document.querySelector('.player-progessbar');
+const durationProgessBar = document.querySelector('.player-progessbar2');
+const durationCurrentSpan = document.getElementById('current-time');
 
 
 let currentPlayerList = 0;
+let isPlaying = false;
 
 playlistChange();
 
@@ -144,7 +150,107 @@ function playlistChange() {
 
         sidePlaylist.appendChild(li);
     });
+    songPlay();
 }
+
+function songPlay() {
+    const sideMusics = document.querySelectorAll('.side-playlist li');
+
+    sideMusics.forEach((song, index)=>{
+        song.addEventListener('click',()=>{
+            audio.src = songListArray[currentPlayerList][index].music;
+            audio.play();
+            playerMusic(index);
+            musicDuration();
+            isPlaying = true;
+
+            if(isPlaying) {
+                playerPlay.classList.add('fa-pause');
+                playerPlay.classList.remove('fa-play');
+            } else {
+                playerPlay.classList.add('fa-play');
+                playerPlay.classList.remove('fa-pause');
+            }
+        })
+    })
+}
+
+function playerMusic(index) {
+    const img = player.querySelector('img');
+    const song = playerText.querySelector('h1');
+    const singer = playerText.querySelector('p');
+
+    img.src = songListArray[currentPlayerList][index].img;
+    song.textContent = songListArray[currentPlayerList][index].song;
+    singer.textContent = songListArray[currentPlayerList][index].singer;
+}
+
+function musicDuration() {
+    audio.addEventListener('loadedmetadata', () => {
+        let durationMin =  parseInt(audio.duration / 60);
+        let durationSecond = parseInt(audio.duration % 60);
+        durationSpan.textContent = durationMin + ':' + (durationSecond<10 ? '0' : '') + durationSecond;
+
+        progressBar(audio.duration);
+      });
+}
+
+function progressBar(duration){
+    durationProgessBar.style.width = '0%';
+    audio.addEventListener('timeupdate', ()=> {
+        const currentTime = audio.currentTime;
+        const ProgessBarWidth = (currentTime / duration) * 100;
+        durationProgessBar.style.width = ProgessBarWidth + '%';
+
+        let currentMin =  parseInt(currentTime / 60);
+        let currentSec = parseInt(currentTime % 60);
+        durationCurrentSpan.textContent = currentMin + ':' + (currentSec < 10? '0' : '') + currentSec;
+    })
+
+    function progessUpdate(e) {
+        const x = e.clientX - playerProgessbar.getBoundingClientRect().left;
+        const width = playerProgessbar.clientWidth;
+        const newPosition = x / width;
+    
+        const newTime = newPosition * duration;
+        audio.currentTime = newTime;
+    
+        durationProgessBar.style.width = newPosition * 100 + '%';
+    }
+    
+    playerProgessbar.addEventListener('click', (e) => {
+        progessUpdate(e);
+    });
+    
+    playerProgessbar.addEventListener('mousedown', () => {
+        playerProgessbar.addEventListener('mousemove', progessUpdate);
+        playerProgessbar.classList.add('active');
+    });
+    
+    playerProgessbar.addEventListener('mouseup', () => {
+        playerProgessbar.removeEventListener('mousemove', progessUpdate);
+        playerProgessbar.classList.remove('active');
+    });
+}
+
+
+
+playerPlay.addEventListener('click',()=>{
+    if(isPlaying) {
+        audio.pause();
+        isPlaying = false;
+        playerPlay.classList.add('fa-play');
+        playerPlay.classList.remove('fa-pause');
+    } else {
+        audio.play();
+        isPlaying = true;
+        playerPlay.classList.add('fa-pause');
+        playerPlay.classList.remove('fa-play');
+    }
+})
+
+
+
 
 
 singerList.forEach((artist, index)=>{
@@ -251,3 +357,23 @@ playlistEdit.forEach((edit, index) => {
         }
     })
 })
+
+const volumBtn = document.getElementById('volum-btn');
+const volumBar = document.querySelector('.volum');
+const volumBar2 = document.querySelector('.volum2');
+
+volumBtn.addEventListener('click',(e)=>{
+    volumBar.classList.toggle('active');
+})
+
+volumBar.addEventListener('click', (e)=>{
+    volumUpdate(e);
+});
+
+function volumUpdate(e) {
+    const y = e.clientY - volumBar2.getBoundingClientRect().bottom;
+    const volum = (-y/100).toFixed(1);
+    audio.volume = volum;
+    const volumHeight = audio.volume * 100;
+    volumBar2.style.height = `${volumHeight}%`;
+}

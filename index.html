@@ -12,7 +12,7 @@
 <body>
 
 
-    <audio src="" controls></audio>
+    <audio src="" controls loop></audio>
     
     <div class="container">
         <div class="side">
@@ -30,78 +30,28 @@
                 </li>
             </ul>
 
+
             <ul class="side-playlist">
                 <li>
-                    <img src="/musics/music01.jpg">
-                    <div class="playlist-text">
-                        <h1></h1>
-                        <p></p>
-                    </div>
-                    <i class="fa-regular fa-circle-play"></i>
-                </li>
-                <li>
-                    <img src="/musics/music01.jpg">
-                    <div class="playlist-text">
-                        <h1></h1>
-                        <p></p>
-                    </div>
-                    <i class="fa-regular fa-circle-play"></i>
-                </li>
-                <li>
-                    <img src="/musics/music01.jpg">
-                    <div class="playlist-text">
-                        <h1></h1>
-                        <p></p>
-                    </div>
-                    <i class="fa-regular fa-circle-play"></i>
-                </li>
-                <li>
-                    <img src="/musics/music01.jpg">
-                    <div class="playlist-text">
-                        <h1></h1>
-                        <p></p>
-                    </div>
-                    <i class="fa-regular fa-circle-play"></i>
-                </li>
-                <li>
-                    <img src="/musics/music01.jpg">
-                    <div class="playlist-text">
-                        <h1></h1>
-                        <p>lilBOI</p>
-                    </div>
-                    <i class="fa-regular fa-circle-play"></i>
-                </li>
-                <li>
-                    <img src="/musics/music01.jpg">
-                    <div class="playlist-text">
-                        <h1></h1>
-                        <p></p>
-                    </div>
-                    <i class="fa-regular fa-circle-play"></i>
-                </li>
-                <li>
-                    <img src="/musics/music01.jpg">
-                    <div class="playlist-text">
-                        <h1></h1>
-                        <p></p>
-                    </div>
-                    <i class="fa-regular fa-circle-play"></i>
                 </li>
             </ul>
+
+
+
             <div class="side-collection">
                 <ul class="side-collection-content">
                     <li>
                         <i class="fa-regular fa-pen-to-square active"></i>
                         <input type="text">
                         <div class="side-collection-background active">
-                            <span> Playlist 1</span>                  
+                            <span>POP</span>                  
                         </div>
                     </li>
                     <li>
-                        <i class="fa-regular fa-pen-to-square""></i>
+                        <i class="fa-regular fa-pen-to-square"></i>
                         <input type="text">
                         <div class="side-collection-background">
-                            <span> Playlist 2</span>
+                            <span> HIPHOP</span>
                         </div>
                     </li>
                 </ul>
@@ -137,13 +87,12 @@
                             <a href="#">follow</a>
                         </div>
                     </div>
+                    <div class="content-img-video">
+                        <video src="/movies/릴보이.mp4" controls></video>
+                        <span id="content-img-close">X</span>
+                    </div>
                 </div>
-                <div class="content-img-video">
-                    <video src="/movies/릴보이.mp4" controls></video>
-                    <span id="content-img-close">X</span>
-                </div>
-                
-            
+    
     
                 <div class="albums-container">
                     <div class="content-albums-logo">
@@ -238,9 +187,6 @@
                         <li>
                             <img src="">
                         </li> 
-                        <li>
-                            <img src="">
-                        </li> 
                     </ul>
                 </div>
             </div>
@@ -263,11 +209,16 @@
                 <div class="player-progessbar">
                     <div class="player-progessbar2"></div>
                 </div>
-                <span id="duration">0:00</span> <!-- 여기에 길이 표시 -->
+                <span id="duration">0:00</span>
             </div>
             <div class="player-controls">
+                <div class="player-volum">
+                    <i class="fa-solid fa-volume-low" id="volum-btn"></i>
+                    <div class="volum">
+                        <div class="volum2"></div>
+                    </div>
+                </div>
                 <i class="fa-solid fa-arrows-rotate"></i>
-                <i class="fa-solid fa-volume-low"></i>
             </div>
         </div>
     </div>
