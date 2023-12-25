@@ -1,6 +1,8 @@
 
 .content {
-    width: calc(100% - 300px);
+    width: 100%;
+    height: 100%;
+    /* width: calc(100% - 300px); */
     background: var(--content-background);
     position: relative;
     padding: 20px;
@@ -47,6 +49,7 @@
     position: relative;
     overflow: hidden;
     filter: brightness(1.2);
+    transition: all 0.3s ease;
 }
 
 .content-img::before {
@@ -78,12 +81,14 @@
     letter-spacing: -2px;
     width: 100%;
     margin-bottom: 5px;
+    transition: all 0.3s ease;
 }
 
 .content-img-logo p {
     font-size: 12px;
     line-height: 1.5;
     color: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
 }
 
 .content-img-btn {
@@ -133,7 +138,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 0 -90px;
+    object-position: 0 25%;
 }
 
 .content-img-video.active {
@@ -254,6 +259,25 @@
     opacity:0.5;
 }
 
+.albums {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    transition: all 1s ease;
+}
+
+.content-albums {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 101;
+    list-style: none;
+    margin-top: 15px;
+}
+
+
 .albums-container {
     width: 100%;
     background: rgba(0,0,0,0.15);
@@ -273,6 +297,7 @@
     font-size: 20px;
     font-weight: 600;
     color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
 }
 
 .content-albums-sort {
@@ -281,7 +306,6 @@
     color: rgba(255,255,255,0.5);
     gap: 10px;
     flex: 2px;
-    margin-left: 10px;
     font-size: 10px;
     margin-top: 5px;
 }
@@ -299,47 +323,22 @@
 .content-albums-menu i{
     color: rgba(255, 255, 255, 0.3);
     font-size: 20px;
-}
-
-.content-albums {
-    width: 100%;
-    height: 150px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 101;
-    list-style: none;
-    margin-top: 15px;
-}
-
-.content-albums li {
-    height: 100%;
     cursor: pointer;
 }
 
+.content-albums li {
+    width: 150px;
+    cursor: pointer;
+    position: relative;
+    margin: 0px 8px;
+}
+
 .content-albums li img {
-    height: 100%;
+    width: 100%;
+    aspect-ratio: 1/1;
     border-radius: 15px;
 }
 
-.content-albums-text {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-}
-
-.content-albums-text h1 {
-    color: white;
-    font-size: 17px;
-    font-weight: 400;
-}
-
-.content-albums-text p {
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 10px;
-    font-weight: 400;
-}
 
 .recommand-singer {
     width: 100%;
@@ -363,12 +362,51 @@
 
 .recommand-singer li {
     width: 100px;
+    cursor: pointer;
+    position: relative;
 }
 
 .recommand-singer li img {
     width: 100%;
     border-radius: 50%;
     aspect-ratio: 1/1;
+}
+
+
+.recommand-singer i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.4);
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.recommand-singer li:hover .img-background {
+    opacity: 1;
+    visibility: visible;
+}
+
+.recommand-singer li:hover i {
+    opacity: 1;
+    visibility: visible;
+}
+
+.img-background {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    opacity: 0;
+    visibility: visible;
+    transition: all 0.3s ease;
 }
 
 .recommand-singer-title{
@@ -382,4 +420,56 @@
     font-size: 20px;
     font-weight: 600;
     color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+}
+
+@media screen and (width < 1250px) {
+    .content {
+        display: flex;
+        width: 100%;
+    }
+    .content-container { 
+        width: 100%;
+    }
+    .recommand-singer-title h1{
+        font-size: 13px;
+    }
+    .content-albums-logo h1{
+        font-size: 13px;
+    }
+}
+
+
+@media screen and (width < 1100px) {
+    .content-img {
+        background-size: cover;
+    }
+}
+
+@media screen and (width < 600px) {
+    .content-img {
+        background-size: cover;
+        background-position-x: 70%;
+        background-position-y: 15%;
+    }
+    .content-img-logo h1{
+        font-size: 32px;
+    }
+    .content-img-logo p{
+        font-size: 9px;
+    }
+    .content-img-logo {
+        width: 100%;
+    }
+    .content-img-logo a {
+        font-size: 10px;
+    }
+}
+
+
+@media screen and (width < 450px) {
+    .content-img {
+        background-position-x: 70%;
+        background-position-y: 15%;
+    }
 }

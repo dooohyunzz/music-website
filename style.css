@@ -30,12 +30,13 @@ audio {
 
 .container {
     height: 100vh;
-    overflow: hidden;
     display: flex;
     flex-wrap: wrap;
+    overflow: hidden;
 }
 
 body {
-    background: red;
+    height: 100vh;
+    overflow: hidden;
     font-family: 'Poppins';
 }

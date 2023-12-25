@@ -5,6 +5,7 @@ const prevButton = document.getElementById('music-prev');
 const nextButton = document.getElementById('music-next');
 const playerPlay = document.getElementById('music-play');
 const sidePlay =document.querySelectorAll('.side-playlist li i');
+const side = document.querySelector('.side');
 
 const songList1 = [
     {
@@ -114,12 +115,12 @@ const durationSpan = document.getElementById('duration');
 const playerProgessbar = document.querySelector('.player-progessbar');
 const durationProgessBar = document.querySelector('.player-progessbar2');
 const durationCurrentSpan = document.getElementById('current-time');
+const sideHide = document.querySelector('.side-btn');
 
 
 let currentPlayerList = 0;
 let isPlaying = false;
 let currentSong;
- 
 playlistChange();
 
 function playlistChange() {
@@ -313,18 +314,33 @@ sideMenu.forEach((side,index) => {
     });
 });
 
+
 function change(index) {
     playlistEditInput.forEach(input => {
         input.style.display ='none';
     })
     if(index === 1){
-        sidePlaylist.classList.add('active');
+        sidePlaylist.classList.remove('active');
         sideCollection.classList.add('active');
     } else {
-        sidePlaylist.classList.remove('active');
+        sidePlaylist.classList.add('active');
         sideCollection.classList.remove('active');
     }
 }
+
+sideHide.addEventListener('click',()=>{
+    side.classList.toggle('active');
+    const i = sideHide.querySelector('i');
+
+    if(i.classList.contains('fa-angle-left')){
+        i.classList.remove('fa-angle-left');
+        i.classList.add('fa-angle-right');
+    } else {
+        i.classList.remove('fa-angle-right');
+        i.classList.add('fa-angle-left');
+    }
+})
+
 
 collectionList.forEach((list, index)=>{
     
@@ -454,3 +470,32 @@ createPlaylist.addEventListener('click',()=>{
     playlistLi.appendChild(li);
 })
 
+
+
+const albumLeft = document.getElementById('album-right');
+const albumRight = document.getElementById('album-left');
+const albums = document.querySelector('.albums');
+
+let currentAlbums = 0;
+
+console.log(currentAlbums);
+
+albumLeft.addEventListener('click', ()=>{
+    currentAlbums--;
+    if(currentAlbums < 0){
+        currentAlbums = 2;
+    }
+    console.log(currentAlbums);
+    
+    albums.style.transform = `translateX(${- currentAlbums * 99}%)`;
+
+});
+
+albumRight.addEventListener('click', ()=>{
+    currentAlbums++;
+    if(currentAlbums > 2){
+        currentAlbums = 0;
+    }
+    console.log(currentAlbums);
+    albums.style.transform = `translateX(${- currentAlbums * 99}%)`;
+});
