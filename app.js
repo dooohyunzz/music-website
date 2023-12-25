@@ -119,7 +119,8 @@ const durationCurrentSpan = document.getElementById('current-time');
 
 let currentPlayerList = 0;
 let isPlaying = false;
-
+let currentSong;
+ 
 playlistChange();
 
 function playlistChange() {
@@ -155,12 +156,15 @@ function playlistChange() {
 
 function songPlay() {
     const sideMusics = document.querySelectorAll('.side-playlist li');
+    
 
     sideMusics.forEach((song, index)=>{
         song.addEventListener('click',()=>{
-            audio.src = songListArray[currentPlayerList][index].music;
+            currentSong = index;
+            audio.src = songListArray[currentPlayerList][currentSong].music;
             audio.play();
             playerMusic(index);
+            player.classList.add('active');
             musicDuration();
             isPlaying = true;
 
@@ -174,6 +178,7 @@ function songPlay() {
         })
     })
 }
+
 
 function playerMusic(index) {
     const img = player.querySelector('img');
@@ -247,8 +252,47 @@ playerPlay.addEventListener('click',()=>{
         playerPlay.classList.add('fa-pause');
         playerPlay.classList.remove('fa-play');
     }
-})
+});
 
+
+function playerMusicPlay(){
+    audio.src = songListArray[currentPlayerList][currentSong].music;
+    audio.play();
+    playerMusic(currentSong);
+    player.classList.add('active');
+    musicDuration();
+    isPlaying = true;
+
+    if(isPlaying) {
+        playerPlay.classList.add('fa-pause');
+        playerPlay.classList.remove('fa-play');
+    } else {
+        playerPlay.classList.add('fa-play');
+        playerPlay.classList.remove('fa-pause');
+    }
+}
+
+prevButton.addEventListener('click',()=>{
+    currentSong--;
+
+    if(currentSong < 0) {
+        currentSong = songListArray[currentPlayerList].length - 1;
+    }
+
+    playerMusicPlay();
+});
+
+
+nextButton.addEventListener('click',()=>{
+    currentSong++;
+
+    if(currentSong >= songListArray[currentPlayerList].length) {
+        currentSong = 0;
+    }
+
+    playerMusicPlay();
+
+});
 
 
 
@@ -318,9 +362,6 @@ const contentTop = document.querySelector('.content-top ');
 
 
 
-imgVideoSrc.volume = 1;
-
-
 imgPlay.addEventListener('click', ()=>{
     imgVideo.classList.add('active');
     contentTop.classList.add('active');
@@ -341,6 +382,7 @@ playlistEdit.forEach((edit, index) => {
     const span = collectionListSpan[index];
     const input = playlistEditInput[index];
     edit.addEventListener('click', ()=>{
+
         input.addEventListener('keyup', (e)=>{
             if(e.key === 'Enter'){
                 input.style.display = 'none';
@@ -361,6 +403,7 @@ playlistEdit.forEach((edit, index) => {
 const volumBtn = document.getElementById('volum-btn');
 const volumBar = document.querySelector('.volum');
 const volumBar2 = document.querySelector('.volum2');
+const playerRotate = document.querySelector('.player-rotate');
 
 volumBtn.addEventListener('click',(e)=>{
     volumBar.classList.toggle('active');
@@ -377,3 +420,13 @@ function volumUpdate(e) {
     const volumHeight = audio.volume * 100;
     volumBar2.style.height = `${volumHeight}%`;
 }
+
+playerRotate.addEventListener('click',()=>{
+    playerRotate.classList.toggle('active');
+
+    if(!audio.loop) {
+        audio.loop = true;
+    } else {
+        audio.loop = false;
+    }
+})
