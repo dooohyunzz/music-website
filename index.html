@@ -14,7 +14,6 @@
 </head>
 <body>
 
-
     <audio src="" controls loop></audio>
     
     <div class="container">
@@ -42,8 +41,14 @@
 
 
             <div class="side-collection">
+                <div class="side-collection-menus">
+                    <span>My Playlists</span>
+                    <i class="fa-regular fa-file" id="create-playlist"></i>
+                    <i class="fa-solid fa-xmark" id="delete-playlist"></i>
+                </div>
                 <ul class="side-collection-content">
                     <li>
+                        <div class="deletebackground"></div>
                         <i class="fa-regular fa-pen-to-square active"></i>
                         <input type="text">
                         <div class="side-collection-background active">
@@ -51,10 +56,11 @@
                         </div>
                     </li>
                     <li>
+                        <div class="deletebackground"></div>
                         <i class="fa-regular fa-pen-to-square"></i>
                         <input type="text">
                         <div class="side-collection-background">
-                            <span> HIPHOP</span>
+                            <span>HIPHOP</span>
                         </div>
                     </li>
                 </ul>

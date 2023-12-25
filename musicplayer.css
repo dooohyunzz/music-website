@@ -7,7 +7,7 @@
     align-items: center;
     font-family: 'Poppins', sans-serif;
     justify-content: flex-start;
-    position: fixed;
+    position: absolute;
     bottom: 0px;
     z-index: 1000;
     transform: translateY(100%);
@@ -192,4 +192,12 @@
 
 .player .player-rotate.active i > span {
     display: none;
+}
+
+
+@media screen and (width < 450px) {
+    .player {
+        width: 100%;
+        display: flex;
+    }
 }

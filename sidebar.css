@@ -76,8 +76,8 @@
     justify-content: flex-start;
     border-radius: 15px;
     padding: 0px 15px;
-    margin: 10px 0px;
-    cursor: pointer;;
+    margin: 3px 0px;
+    cursor: pointer;
 }
 
 .side-collection-content {
@@ -86,15 +86,16 @@
     list-style: none;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 5px;
+    margin-top: 50px;
+    flex-wrap: wrap;
 }
 
 .side-collection-content li {
     position: relative;
-    width: 100%;
+    width: 49%;
 }
-
 
 .side-collection-content input {
     position: absolute;
@@ -144,7 +145,6 @@
     color: var(--content-background);
     width: 100%;
 }
-
 
 .side-playlist {
     display: flex;
@@ -231,4 +231,45 @@
     height: 2px;
     width: 70px;
     background: white;
+}
+
+.side-collection-menus {
+    width: calc(100%);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 15px;
+    gap: 12px;
+}
+
+.side-collection-menus span {
+    flex: 2;
+    color: white;
+}
+.side-collection-menus i {
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.deletebackground{
+    background: grey;
+    width: 100%;
+    height: 95%;
+    top: 3px;
+    position: absolute;
+    z-index: 10000;
+    border-radius: 15px;
+    display: none;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+@media screen and (width < 450px) {
+    .side {
+        width: 100%;
+    }
 }

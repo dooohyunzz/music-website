@@ -108,7 +108,6 @@ const sideCollection = document.querySelector('.side-collection');
 const collectionList = document.querySelectorAll('.side-collection-background');
 const collectionListSpan = document.querySelectorAll('.side-collection-background span');
 const singerList = document.querySelectorAll('.recommand-singerlist li');
-const seideCollectionicon = document.querySelectorAll('.side-collection-content li i');
 const player = document.querySelector('.player');
 const playerText = document.querySelector('.player-text');
 const durationSpan = document.getElementById('duration');
@@ -430,3 +429,28 @@ playerRotate.addEventListener('click',()=>{
         audio.loop = false;
     }
 })
+
+const createPlaylist = document.getElementById('create-playlist');
+const deletePlaylist = document.getElementById('delete-playlist');
+const playlistLi = document.querySelector('.side-collection-content');
+const deleteBackground = document.querySelectorAll('.deletebackground');
+
+createPlaylist.addEventListener('click',()=>{
+    const li = document.createElement('li');
+    const i = document.createElement('i');
+    const input = document.createElement('input');
+    const div = document.createElement('div');
+    const span = document.createElement('span');
+    const background = document.createElement('div');
+    span.textContent = 'Playlist';
+    i.className = 'fa-regular fa-pen-to-square active';
+    div.className = 'side-collection-background';
+    div.appendChild(span);
+    background.className = 'deletebackground';
+    li.append(background);
+    li.appendChild(i);
+    li.appendChild(input);
+    li.appendChild(div);
+    playlistLi.appendChild(li);
+})
+
