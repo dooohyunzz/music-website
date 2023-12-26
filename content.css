@@ -466,6 +466,142 @@
     }
 }
 
+.singer-content {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1200px;
+    height: calc(100% - 4%);
+    z-index: 100;
+    display: none;
+}
+
+.singer {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.2);
+    position: relative;
+    background: url(artist/1.jpg);
+    background-position: center;
+    background-size: 20%;
+}
+
+.singer img {
+    height: 100px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -50px;
+    left: 90px;
+    border: 4px solid white;
+}
+
+
+.singer-text {
+    width: 500px;
+}
+
+.singer-text h1 {
+    font-size: 25px;
+    color: white;
+    animation: slide 0.6s ease forwards;
+}
+
+.singer-text p {
+    color: white;
+    animation: slide 1.2s ease forwards;
+}
+
+
+@keyframes slide {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+.singer-text-contanier:first-child{
+    position: absolute;
+    bottom: 0;
+    left: 200px;
+    overflow: hidden;
+    background: #242424;
+    padding: 0 10px;
+}
+
+
+.singer-text-contanier:nth-child(2) {
+    overflow: hidden;
+    position: absolute;
+    bottom: -30px;
+    left: 205px;
+}
+
+.singer-top-songs {
+    margin-top: 60px;
+    height: 350px;
+}
+
+.singer-top-songs h1 {
+    color: white;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.top-songs {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.top-songs li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 10px 30px;
+    margin: 10px 0px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.top-songs li:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.top-songs li:hover i {
+    color: rgba(255,255,255,0.3);
+    display: block;
+}
+
+.top-songs  li img {
+    height: 30px;
+    aspect-ratio: 1/1;
+    border-radius: 5px;
+}
+
+.top-songs li i {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.2);
+    margin-left: auto;
+    display: none;
+}
+
+.top-songs h1 {
+    color: white;
+    margin-left: 30px;
+    font-size: 12px;
+}
+
+.top-songs span {
+    font-size: 12px;
+    margin-left: 20px;
+    color: rgba(255, 255, 255, 0.7);
+}
 
 @media screen and (width < 450px) {
     .content-img {

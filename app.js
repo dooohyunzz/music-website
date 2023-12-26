@@ -157,7 +157,6 @@ function playlistChange() {
 function songPlay() {
     const sideMusics = document.querySelectorAll('.side-playlist li');
     
-
     sideMusics.forEach((song, index)=>{
         song.addEventListener('click',()=>{
             currentSong = index;
@@ -239,7 +238,6 @@ function progressBar(duration){
 }
 
 
-
 playerPlay.addEventListener('click',()=>{
     if(isPlaying) {
         audio.pause();
@@ -296,7 +294,6 @@ nextButton.addEventListener('click',()=>{
 
 
 
-
 singerList.forEach((artist, index)=>{
     const singer = artist.querySelector('img');
     singer.src = 'artist/' + (index + 1 ) + '.jpg';
@@ -328,24 +325,23 @@ function change(index) {
     }
 }
 
-sideHide.addEventListener('click',()=>{
-    side.classList.toggle('active');
-    const i = sideHide.querySelector('i');
+// sideHide.addEventListener('click',()=>{
+//     side.classList.toggle('active');
+//     const i = sideHide.querySelector('i');
 
-    if(i.classList.contains('fa-angle-left')){
-        i.classList.remove('fa-angle-left');
-        i.classList.add('fa-angle-right');
-    } else {
-        i.classList.remove('fa-angle-right');
-        i.classList.add('fa-angle-left');
-    }
-})
+//     if(i.classList.contains('fa-angle-left')){
+//         i.classList.remove('fa-angle-left');
+//         i.classList.add('fa-angle-right');
+//     } else {
+//         i.classList.remove('fa-angle-right');
+//         i.classList.add('fa-angle-left');
+//     }
+// })
 
 
 collectionList.forEach((list, index)=>{
     
     list.addEventListener('click', ()=>{
-        change();
         sideMenu[0].classList.add('active');  
         sideMenu[1].classList.remove('active');
         currentPlayerList = index;
@@ -396,24 +392,29 @@ const playlistEditInput = document.querySelectorAll('.side-collection-content in
 playlistEdit.forEach((edit, index) => {
     const span = collectionListSpan[index];
     const input = playlistEditInput[index];
-    edit.addEventListener('click', ()=>{
 
-        input.addEventListener('keyup', (e)=>{
-            if(e.key === 'Enter'){
+    edit.addEventListener('click', ()=>{
+        if(edit.classList.contains('active')){
+            if(input.style.display === 'block'){
                 input.style.display = 'none';
                 span.textContent = input.value;
+            } else {
+                input.style.display = 'block';
+                input.value = span.textContent;
+                span.textContent = '';
+                input.focus();
             }
-        })
 
-        if(input.style.display === 'block'){
-            input.style.display = 'none';
-            span.textContent = input.value;
-        } else {
-            input.style.display = 'block';
-            input.value = span.textContent;
+            input.addEventListener('keyup', (e)=>{
+                if(e.key === 'Enter'){
+                    input.style.display = 'none';
+                    span.textContent = input.value;
+                }
+            })
         }
     })
-})
+});
+
 
 const volumBtn = document.getElementById('volum-btn');
 const volumBar = document.querySelector('.volum');
@@ -478,14 +479,11 @@ const albums = document.querySelector('.albums');
 
 let currentAlbums = 0;
 
-console.log(currentAlbums);
-
 albumLeft.addEventListener('click', ()=>{
     currentAlbums--;
     if(currentAlbums < 0){
         currentAlbums = 2;
     }
-    console.log(currentAlbums);
     
     albums.style.transform = `translateX(${- currentAlbums * 99}%)`;
 
@@ -496,6 +494,172 @@ albumRight.addEventListener('click', ()=>{
     if(currentAlbums > 2){
         currentAlbums = 0;
     }
-    console.log(currentAlbums);
     albums.style.transform = `translateX(${- currentAlbums * 99}%)`;
+});
+
+const sideLogo = document.querySelector('.side-logo');
+const singerContent = document.querySelector('.singer-content');
+const recommandSingerlist = document.querySelectorAll('.recommand-singerlist li');
+const contentContainer = document.querySelector('.content-container');
+const topSongs = document.querySelector('.top-songs');
+const singerText = document.querySelector('.singer-text');
+const singerTop = document.querySelector('.singer');
+const singers = [
+    {
+        img: 'artist/1.jpg',
+        singer: 'lilBOI',
+        singerText: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit',
+        topSong: ['friends', 'We Heighr', 'Tommorow', 'BE !'],
+        topSongImg: ['musics/friends.jpg', 'musics/We Higher.jpg', 'musics/Tommorow.jpg', 'musics/be.jpg'],
+        music: ['songs/Friends.m4a', 'songs/We Higher.m4a', 'songs/Tomorrow.m4a', 'songs/be.m4a']
+    },
+    {
+        img: 'artist/2.jpg',
+        singer: 'SUPERBEE',
+        singerText: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit',
+        topSong: ['5Gawd'],
+        topSongImg: ['musics/5 Gawd.jpg'],
+        music: ['songs/5 Gawd.m4a']
+    },
+    {
+        img: 'artist/3.jpg',
+        singer: 'Basick',
+        singerText: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit',
+        topSong: [''],
+        topSongImg: [''],
+        music: ['']
+    },
+    {
+        img: 'artist/4.jpg',
+        singer: 'Jo Gwang Il',
+        singerText: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit',
+        topSong: [''],
+        topSongImg: [''],
+        music: ['']
+    },
+    {
+        img: 'artist/5.jpg',
+        singer: 'GiriBoi',
+        singerText: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit',
+        topSong: ['Tommorow'],
+        topSongImg: ['musics/Tommorow.jpg'],
+        music: ['songs/Tomorrow.m4a']
+    },
+    {
+        img: 'artist/6.jpg',
+        singer: 'Won Staien',
+        singerText: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit',
+        topSong: ['friends'],
+        topSongImg: ['musics/friends.jpg'],
+        music: ['songs/Friends.m4a']
+    },
+    {
+        img: 'artist/7.jpg',
+        singer: 'Swervy',
+        singerText: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit',
+        topSong: ['ART GANG MONEY'],
+        topSongImg: ['musics/ART GANG MONEY.jpg'],
+        music: ['songs/ART GANG MONEY.m4a']
+    },
+    {
+        img: 'artist/8.jpg',
+        singer: 'MIRANEEE',
+        singerText: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit',
+        topSong: ['VVS'],
+        topSongImg: ['musics/VVS.jpg'],
+        music: ['songs/VVS.m4a']
+    },
+    {
+        img: 'artist/9.jpg',
+        singer: 'Mushvenom',
+        singerText: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit',
+        topSong: ['VVS'],
+        topSongImg: ['musics/VVS.jpg'],
+        music: ['songs/VVS.m4a']
+    },
+]
+
+let currentArtist = 0;
+
+
+recommandSingerlist.forEach((singer, index)=>{
+    singer.addEventListener('click', ()=>{
+        contentContainer.style.display = 'none';
+        singerContent.style.display = 'block';
+
+        const h1 = singerText.querySelector('h1');
+        const p = singerText.querySelector('p');
+        const img = singerTop.querySelector('img');
+        
+        h1.textContent = singers[index].singer;
+        p.textContent = singers[index].singerText;
+        img.src = singers[index].img;
+        singerTop.style.backgroundImage = `url('${singers[index].img}')`;
+        currentArtist = index;
+        singerChange();
+    });
+})
+
+function singerChange(){
+    topSongs.innerHTML = '';
+
+    singers[currentArtist].topSong.forEach((song, index)=>{
+        const h1 = document.createElement('h1');
+        const span = document.createElement('span');
+        const img = document.createElement('img');
+        const li = document.createElement('li');
+        const i = document.createElement('i');
+        i.className = 'fa-regular fa-circle-play';
+        h1.textContent = song;
+        span.textContent = index + 1;
+        img.src = singers[currentArtist].topSongImg[index];
+
+        li.appendChild(img);
+        li.appendChild(span);
+        li.appendChild(h1);    
+        li.appendChild(i);
+        topSongs.appendChild(li);
+    })
+
+    artistSongPlay();
+}
+
+function artistSongPlay() {
+    const topSongsLi = document.querySelectorAll('.top-songs li');
+    topSongsLi.forEach((musicPlay, index)=>{
+        musicPlay.addEventListener('click',()=>{
+
+            audio.src = singers[currentArtist].music[index];
+            audio.play();
+            artistMusic(index);
+            isPlaying = true;
+            
+            playlist.classList.add('active');
+            musicDuration();
+
+            
+            if(isPlaying) {
+                playerPlay.classList.add('fa-pause');
+                playerPlay.classList.remove('fa-play');
+            } else {
+                playerPlay.classList.add('fa-play');
+                playerPlay.classList.remove('fa-pause');
+            }
+        })
+    })
+}
+
+function artistMusic(index) {
+    const img = player.querySelector('img');
+    const song = playerText.querySelector('h1');
+    const singer = playerText.querySelector('p');
+
+    img.src =  singers[currentArtist].topSongImg[index];
+    song.textContent = singers[currentArtist].topSong[index];
+    singer.textContent = singers[currentArtist].singer;
+}
+
+    sideLogo.addEventListener('click',()=>{
+        contentContainer.style.display = 'block';
+        singerContent.style.display = 'none';
 });

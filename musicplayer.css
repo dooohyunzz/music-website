@@ -234,27 +234,4 @@
 }
 
 @media screen and (width < 450px) {
-    .player {
-        width: 100%;
-    }
-
-    .player-content {
-        width: 100%;
-        font-size: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .currentTime {
-        margin-left: 15px;
-    }
-
-    .player-controls i{
-        display: none;
-    }
-    .player-play {
-        margin-right: 15%;
-    }
-
 }
